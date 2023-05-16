@@ -34,6 +34,18 @@ const pecas = {
     }
 }
 
+let robotronImgIndex = 0;
+
+const listaDeRobotrons = [
+    'img/robotron-amarelo.png',
+    'img/robotron-branco.png',
+    'img/robotron-rosa.png',
+    'img/robotron-azul.png',
+    'img/robotron-preto.png',
+    'img/robotron-vermelho.png'
+];
+const corDoRobotron = document.querySelector("[data-corDoRobotron]");
+
 controle.forEach((elemento) => {
     elemento.addEventListener('click', (evento) => {
         manipulaDados(evento.target.dataset.controle, evento.target.parentNode)
@@ -60,3 +72,13 @@ function atualizaEstatisticas(peca) {
         elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica]
     })
 }
+function trocaRobotron() {
+    if (robotronImgIndex == listaDeRobotrons.length) {
+        robotronImgIndex = 0;
+    } else {
+        document.querySelector("#robotron").src = listaDeRobotrons[robotronImgIndex];
+        robotronImgIndex++;
+    }
+}
+
+corDoRobotron.addEventListener("click", trocaRobotron);
